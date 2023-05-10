@@ -1,14 +1,16 @@
 const asana = require('asana');
 const core = require('@actions/core');
 
+core.debug('Hello')
+core.info('Hi!')
+
 const asanaBot = async (asanaPat, taskID, target, prState, prUrl, prTitle, prNumber, commentStatus, doNotMoveSections) => {
   const client = asana.Client.create({
     'defaultHeaders': {
-      'asana-enable': 'new_user_task_lists,new_goal_memberships',
+      'asana-enable': 'new_user_task_lists,new_memberships,new_goal_memberships',
     },
   }).useAccessToken(asanaPat);
-  core.debug('Hello')
-  core.info('Hi!')
+
   core.debug(`TaskID: ${taskID}`);
   try {
     const task = await client.tasks.findById(taskID);
