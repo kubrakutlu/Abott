@@ -1,9 +1,6 @@
 const asana = require('asana');
 const core = require('@actions/core');
 
-core.debug('Hello')
-core.info('Hi!')
-
 const asanaBot = async (asanaPat, taskID, target, prState, prUrl, prTitle, prNumber, commentStatus, doNotMoveSections) => {
   const client = asana.Client.create({
     'defaultHeaders': {
