@@ -19,13 +19,15 @@ const gitEvent = async (asanaPAT, asanaSecret, pr, target, prState, doNotMoveSec
     while ((rawParseUrlTask = ASANA_TASK_LINK_REGEX.exec(prBody)) !== null) {
       taskIDs.push(rawParseUrlTask.groups.taskId);
     }
-
+    
+    core.info('TaskIDs:')
     core.info(taskIDs);
 
     for (const taskID of taskIDs) {
       let commentStatus = true;
       if (asanaSecret !== '') {
         // This happens only when the PR is created. Otherwise we don't need to link the issue
+        core.info('prState')
         if (prState === 'OPEN') {
           const axiosInstance = axios.create({
             baseURL: 'https://github.integrations.asana.plus/custom/v1',
@@ -33,7 +35,7 @@ const gitEvent = async (asanaPAT, asanaSecret, pr, target, prState, doNotMoveSec
               Authorization: `Bearer ${asanaSecret}`,
             }
           });
-
+          core.info('HI')
           const result = await axiosInstance.post('actions/widget', {
             allowedProjects: [],
             blockedProjects: [],
