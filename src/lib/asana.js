@@ -7,7 +7,8 @@ const asanaBot = async (asanaPat, taskID, target, prState, prUrl, prTitle, prNum
       'asana-enable': 'new_user_task_lists,new_goal_memberships',
     },
   }).useAccessToken(asanaPat);
-
+  core.debug('Hello')
+  core.info('Hi!')
   core.debug(`TaskID: ${taskID}`);
   try {
     const task = await client.tasks.findById(taskID);
