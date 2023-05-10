@@ -5,7 +5,7 @@ const axios = require('axios');
 const gitEvent = async (asanaPAT, asanaSecret, pr, target, prState, doNotMoveSections) => {
   const ASANA_TASK_LINK_REGEX = /https:\/\/app.asana.com\/(\d+)\/(?<project>\d+)\/(?<taskId>\d+).*/ig;
   if (pr != null) {
-    core.info('Handling PR event...');
+    core.info('Handling the PR event...');
     const prUrl = pr.html_url;
     // const prIsMerged = pr.merged;
     const prBody = pr.body;
@@ -15,6 +15,7 @@ const gitEvent = async (asanaPAT, asanaSecret, pr, target, prState, doNotMoveSec
     let taskIDs = [];
     let rawParseUrlTask;
     let res;
+    core.debug('PR:');
     core.debug(prBody);
     while ((rawParseUrlTask = ASANA_TASK_LINK_REGEX.exec(prBody)) !== null) {
       taskIDs.push(rawParseUrlTask.groups.taskId);
