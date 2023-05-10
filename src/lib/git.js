@@ -20,7 +20,7 @@ const gitEvent = async (asanaPAT, asanaSecret, pr, target, prState, doNotMoveSec
       taskIDs.push(rawParseUrlTask.groups.taskId);
     }
     
-    core.info('TaskIDs:')
+    core.info('TaskIDs:');
     core.info(taskIDs);
 
     for (const taskID of taskIDs) {
@@ -35,7 +35,7 @@ const gitEvent = async (asanaPAT, asanaSecret, pr, target, prState, doNotMoveSec
               Authorization: `Bearer ${asanaSecret}`,
             }
           });
-          core.info('HI')
+          core.info('HI');
           const result = await axiosInstance.post('actions/widget', {
             allowedProjects: [],
             blockedProjects: [],
