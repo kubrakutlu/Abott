@@ -4,7 +4,7 @@ const core = require('@actions/core');
 const asanaBot = async (asanaPat, taskID, target, prState, prUrl, prTitle, prNumber, commentStatus, doNotMoveSections) => {
   const client = asana.Client.create({
     'defaultHeaders': {
-      'asana-enable': 'new_user_task_lists',
+      'asana-enable': 'new_user_task_lists,new_goal_memberships',
     },
   }).useAccessToken(asanaPat);
 
